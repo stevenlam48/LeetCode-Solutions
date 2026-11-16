@@ -1,0 +1,9 @@
+package poweroftwo
+// Time:  O(1)
+// Space: O(1)
+
+class Solution {
+    fun isPowerOfTwo(n: Int): Boolean {
+        return n > 0 && (n and (n - 1)) == 0
+    }
+}

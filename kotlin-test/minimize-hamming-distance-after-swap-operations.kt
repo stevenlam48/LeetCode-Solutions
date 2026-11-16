@@ -1,0 +1,75 @@
+package minimizehammingdistanceafterswapoperations
+
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+
+class MinimizeHammingDistanceAfterSwapOperationsTest {
+    private val solution = Solution()
+
+    @Test
+    fun exampleWithTwoSwapComponents() {
+        assertEquals(
+            1,
+            solution.minimumHammingDistance(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(2, 1, 4, 5),
+                arrayOf(intArrayOf(0, 1), intArrayOf(2, 3))
+            )
+        )
+    }
+
+    @Test
+    fun exampleWithoutAllowedSwaps() {
+        assertEquals(
+            2,
+            solution.minimumHammingDistance(
+                intArrayOf(1, 2, 3, 4),
+                intArrayOf(1, 3, 2, 4),
+                emptyArray()
+            )
+        )
+    }
+
+    @Test
+    fun connectedComponentCanMatchAllValues() {
+        assertEquals(
+            0,
+            solution.minimumHammingDistance(
+                intArrayOf(5, 1, 2, 4, 3),
+                intArrayOf(1, 5, 4, 2, 3),
+                arrayOf(
+                    intArrayOf(0, 4),
+                    intArrayOf(4, 2),
+                    intArrayOf(1, 3),
+                    intArrayOf(1, 4)
+                )
+            )
+        )
+    }
+
+    @Test
+    fun duplicateValuesAreCountedPerComponent() {
+        assertEquals(
+            4,
+            solution.minimumHammingDistance(
+                intArrayOf(1, 1, 2, 2),
+                intArrayOf(2, 2, 1, 1),
+                arrayOf(intArrayOf(0, 1), intArrayOf(2, 3))
+            )
+        )
+        assertEquals(
+            0,
+            solution.minimumHammingDistance(
+                intArrayOf(1, 1, 2, 2),
+                intArrayOf(2, 2, 1, 1),
+                arrayOf(intArrayOf(0, 2), intArrayOf(1, 3))
+            )
+        )
+    }
+
+    @Test
+    fun singleElement() {
+        assertEquals(0, solution.minimumHammingDistance(intArrayOf(7), intArrayOf(7), emptyArray()))
+        assertEquals(1, solution.minimumHammingDistance(intArrayOf(7), intArrayOf(8), emptyArray()))
+    }
+}
